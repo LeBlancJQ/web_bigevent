@@ -3,6 +3,7 @@
 $.ajaxPrefilter(function (options) {
   // console.log(options)
   // 在发起真正的 ajax 请求之前，统一拼接请求的根路径
+  // http://www.liulongbin.top:3007 http://big-event-api-t.itheima.net
   options.url = 'http://big-event-api-t.itheima.net' + options.url
   // console.log(options.url)
 
@@ -18,7 +19,6 @@ $.ajaxPrefilter(function (options) {
   // 不论成功还是失败，最终都会调用这个函数
   options.complete = function (res) {
     // console.log('执行了 complete 回调')
-    // console.log(res)
     // 在 complete 回调函数中，可以使用 responseJSON 拿到服务器响应回来的数据
     if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
       // 1. 强制清空 token, 如果是手写的假 token ，就清空
